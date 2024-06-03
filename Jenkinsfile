@@ -4,7 +4,7 @@ pipeline {
         CI = 'true'
     }
     stages {
-     stage('Deploy for master) {
+     stage('Deploy for master') {
             when {
                 branch 'master' 
             }
