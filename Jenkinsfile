@@ -23,7 +23,7 @@ pipeline {
             steps {
                 git branch: 'stage', url: 'https://github.com/prakashalphav/multi-branch.git'
                 sh 'cp ./stage.html /var/www/html/stage/stage.html'
-                sh 'systemctl reload nginx'
+                sh 'sudo systemctl reload nginx'
             }
         }
     }
