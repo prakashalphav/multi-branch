@@ -12,6 +12,7 @@ pipeline {
             steps {
                 git branch: 'master', url: 'https://github.com/prakashalphav/multi-branch.git'
                 sh 'cp ./master.html /var/www/html/master/master.html'
+                sh 'systemctl reload nginx'
             }
         }
         stage('Deploy for stage') {
@@ -22,6 +23,7 @@ pipeline {
             steps {
                 git branch: 'stage', url: 'https://github.com/prakashalphav/multi-branch.git'
                 sh 'cp ./stage.html /var/www/html/stage/stage.html'
+                sh 'systemctl reload nginx'
             }
         }
     }
