@@ -4,20 +4,24 @@ pipeline {
         CI = 'true'
     }
     stages {
-     stage('Deliver for development') {
+     stage('Deploy for master) {
             when {
                 branch 'master' 
             }
+
             steps {
-                sh 'touch /home/ubuntu/prakash/master.txt'
+                git branch: 'master', url: 'https://github.com/prakashalphav/multi-branch.git'
+                sh 'cp ./master.html /var/www/html/master/master.html'
             }
         }
         stage('Deploy for stage') {
             when {
                 branch 'stage'  
             }
+            
             steps {
-                sh ' touch /home/ubuntu/prakash/stage.txt'
+                git branch: 'stage', url: 'https://github.com/prakashalphav/multi-branch.git'
+                sh 'cp ./stage.html /var/www/html/stage/stage.html'
             }
         }
     }
