@@ -23,7 +23,7 @@ pipeline {
                     sh 'sudo rm -f /etc/nginx/sites-enabled/stage.conf'
                     sh 'sudo ln -s /etc/nginx/sites-available/stage.conf /etc/nginx/sites-enabled/'
                     sh 'sudo mkdir -p /var/www/html/stage'
-                    sh 'sudo cp ./master.html /var/www/html/stage/stage.html'
+                    sh 'sudo cp ./stage.html /var/www/html/stage/stage.html'
                     sh 'sudo chown -R www-data:www-data /var/www/html/stage'
                     sh 'sudo systemctl start nginx'
                     sh 'sudo systemctl reload nginx'
