@@ -15,7 +15,7 @@ pipeline {
             when {
                 branch 'master' 
             }
-
+     }
             steps {
                 git branch: 'master', url: 'https://github.com/prakashalphav/multi-branch.git'
                 sh 'cp ./master.conf /etc/nginx/sites-available/'
