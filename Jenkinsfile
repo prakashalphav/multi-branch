@@ -19,6 +19,7 @@ pipeline {
                 script {
                     git branch: 'master', url: 'https://github.com/prakashalphav/multi-branch.git'
                     sh 'sudo cp ./master.conf /etc/nginx/sites-available/'
+                    sh 'sudo rm -f /etc/nginx/sites-enabled/master.conf'
                     sh 'sudo ln -s /etc/nginx/sites-available/master.conf /etc/nginx/sites-enabled/'
                     sh 'sudo mkdir -p /var/www/html/master'
                     sh 'sudo cp ./master.html /var/www/html/master/master.html'
