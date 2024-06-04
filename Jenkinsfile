@@ -4,6 +4,12 @@ pipeline {
         CI = 'true'
     }
     stages {
+        stage ('Install')
+        steps {
+            sh 'sudo apt-get update'
+            sh 'sudo apt-get install nginx'
+            sh 'rm -rf /etc/nginx/sites-available/default'
+        }
      stage('Deploy for master') {
             when {
                 branch 'master' 
