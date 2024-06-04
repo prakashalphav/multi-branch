@@ -24,5 +24,5 @@ pipeline {
                 sh 'cp ./master.html /var/www/html/master/master.html'
                 sh 'sudo systemctl reload nginx'
             }
-        }
+    }
 }
