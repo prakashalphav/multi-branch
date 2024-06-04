@@ -1,29 +1,33 @@
+
 pipeline {
     agent any
     environment {
         CI = 'true'
     }
     stages {
-     stage('Deploy for master') {
-            when {
-                branch 'master' 
-            }
-
+        stage('Install') {
             steps {
-                git branch: 'master', url: 'https://github.com/prakashalphav/multi-branch.git'
-                sh 'cp ./master.html /var/www/html/master/master.html'
-                sh 'sudo systemctl reload nginx'
+                sh 'sudo apt-get update'
+                sh 'sudo apt-get install nginx -y'
+                sh 'sudo rm -rf /etc/nginx/sites-available/default'
             }
         }
         stage('Deploy for stage') {
             when {
-                branch 'stage'  
+                branch 'stage' 
             }
-            
             steps {
-                git branch: 'stage', url: 'https://github.com/prakashalphav/multi-branch.git'
-                sh 'cp ./stage.html /var/www/html/stage/stage.html'
-                sh 'sudo systemctl reload nginx'
+                script {
+                    git branch: 'stage', url: 'https://github.com/prakashalphav/multi-branch.git'
+                    sh 'sudo cp ./stage.conf /etc/nginx/sites-available/'
+                    sh 'sudo rm -f /etc/nginx/sites-enabled/stage.conf'
+                    sh 'sudo ln -s /etc/nginx/sites-available/stage.conf /etc/nginx/sites-enabled/'
+                    sh 'sudo mkdir -p /var/www/html/stage'
+                    sh 'sudo cp ./master.html /var/www/html/stage/stage.html'
+                    sh 'sudo chown -R www-data:www-data /var/www/html/stage'
+                    sh 'sudo systemctl start nginx'
+                    sh 'sudo systemctl reload nginx'
+                }
             }
         }
     }
