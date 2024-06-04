@@ -23,6 +23,7 @@ pipeline {
                     sh 'sudo ln -s /etc/nginx/sites-available/master.conf /etc/nginx/sites-enabled/'
                     sh 'sudo mkdir -p /var/www/html/master'
                     sh 'sudo cp ./master.html /var/www/html/master/master.html'
+                    sh 'sudo systemctl start nginx'
                     sh 'sudo systemctl reload nginx'
                 }
             }
