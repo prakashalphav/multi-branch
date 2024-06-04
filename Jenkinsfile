@@ -20,8 +20,8 @@ pipeline {
                     git branch: 'master', url: 'https://github.com/prakashalphav/multi-branch.git'
                     sh 'sudo cp ./master.conf /etc/nginx/sites-available/'
                     sh 'sudo ln -s /etc/nginx/sites-available/master.conf /etc/nginx/sites-enabled/'
-                    sh 'mkdir -p /var/www/html/master'
-                    sh 'cp ./master.html /var/www/html/master/master.html'
+                    sh 'sudo mkdir -p /var/www/html/master'
+                    sh 'sudo cp ./master.html /var/www/html/master/master.html'
                     sh 'sudo systemctl reload nginx'
                 }
             }
