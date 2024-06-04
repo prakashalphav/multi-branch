@@ -4,7 +4,7 @@ pipeline {
         CI = 'true'
     }
     stages {
-        stage ('Install')
+     stage ('Install')
         steps {
             sh 'sudo apt-get update'
             sh 'sudo apt-get install nginx'
