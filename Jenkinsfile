@@ -8,7 +8,7 @@ pipeline {
         steps {
             sh 'sudo apt-get update'
             sh 'sudo apt-get install nginx -y'
-            sh 'rm -rf /etc/nginx/sites-available/default'
+            sh 'sudo rm -rf /etc/nginx/sites-available/default'
         }
      }
      stage('Deploy for master') {
